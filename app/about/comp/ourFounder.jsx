@@ -1,6 +1,6 @@
 'use client'
 import { useState, useEffect } from 'react'
-const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:8000"
+const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "https://philanzel-backend.onrender.com"
 export function OurFounder() {
     const [founderData, setFounderData] = useState(null)
     const [loading, setLoading] = useState(true)

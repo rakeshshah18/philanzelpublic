@@ -1,7 +1,7 @@
 'use client'
 import { CheckCircle } from "lucide-react"
 import { useState, useEffect } from "react"
-const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:8000"
+const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "https://philanzel-backend.onrender.com"
 export function OurApproach() {
     const [approachData, setApproachData] = useState(null)
     const [loading, setLoading] = useState(true)
