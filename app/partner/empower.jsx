@@ -91,7 +91,7 @@ export default function EmpowerSection() {
                                         // Handle both string URLs and image objects
                                         const imageData = item.image;
                                         let imageUrl = null;
-                                        
+
                                         if (!imageData) {
                                             imageUrl = 'https://via.placeholder.com/600x400/6b7280/ffffff?text=Empowerment';
                                         } else if (typeof imageData === 'string') {
@@ -101,9 +101,9 @@ export default function EmpowerSection() {
                                             // Image object with url property
                                             imageUrl = imageData.url;
                                         }
-                                        
+
                                         console.log(`EmpowerSection image:`, { imageData, imageUrl });
-                                        
+
                                         return (
                                             <img
                                                 src={imageUrl}

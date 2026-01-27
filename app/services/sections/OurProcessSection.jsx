@@ -69,7 +69,7 @@ export default function OurProcessSection({ section }) {
                                 // Handle both string URLs and image objects
                                 const imageData = imagesArr[i];
                                 let imageUrl = null;
-                                
+
                                 if (!imageData) {
                                     imageUrl = null;
                                 } else if (typeof imageData === 'string') {
@@ -79,9 +79,9 @@ export default function OurProcessSection({ section }) {
                                     // Image object with url property
                                     imageUrl = imageData.url;
                                 }
-                                
+
                                 console.log(`OurProcessSection image ${i}:`, { imageData, imageUrl });
-                                
+
                                 return (
                                     <div key={i} className="bg-cyan-50 rounded-lg shadow p-8 flex flex-col items-center text-center">
                                         {imageUrl && (

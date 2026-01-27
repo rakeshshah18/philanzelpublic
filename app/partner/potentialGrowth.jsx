@@ -111,7 +111,7 @@ export default function PotentialGrowthSection() {
                                     {(() => {
                                         const iconData = solution.icon;
                                         let iconUrl = null;
-                                        
+
                                         if (!iconData) {
                                             return (
                                                 <div className="h-12 w-12 bg-cyan-600 rounded-full flex items-center justify-center text-white font-bold text-lg">
@@ -125,9 +125,9 @@ export default function PotentialGrowthSection() {
                                             // Icon object with url property
                                             iconUrl = iconData.url;
                                         }
-                                        
+
                                         console.log(`PotentialGrowthSection icon:`, { iconData, iconUrl });
-                                        
+
                                         return iconUrl ? (
                                             <img
                                                 src={iconUrl}
