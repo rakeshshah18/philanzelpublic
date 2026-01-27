@@ -108,20 +108,46 @@ export default function PotentialGrowthSection() {
                             {/* Icon */}
                             <div className="flex items-center justify-center mb-4">
                                 <div className="w-20 h-20 bg-gray-50 rounded-full flex items-center justify-center hover:scale-110 transition-transform duration-300">
-                                    {solution.icon ? (
-                                        <img
-                                            src={getImageUrl(solution.icon)}
-                                            alt={solution.heading || 'Solution'}
-                                            className="h-12 w-12 object-contain"
-                                            onError={(e) => {
-                                                handleImageError(e, 'https://via.placeholder.com/48x48/6b7280/ffffff?text=?');
-                                            }}
-                                        />
-                                    ) : (
-                                        <div className="h-12 w-12 bg-cyan-600 rounded-full flex items-center justify-center text-white font-bold text-lg">
-                                            {solution.heading?.charAt(0) || '?'}
-                                        </div>
-                                    )}
+                                    {(() => {
+                                        const iconData = solution.icon;
+                                        let iconUrl = null;
+                                        
+                                        if (!iconData) {
+                                            return (
+                                                <div className="h-12 w-12 bg-cyan-600 rounded-full flex items-center justify-center text-white font-bold text-lg">
+                                                    {solution.heading?.charAt(0) || '?'}
+                                                </div>
+                                            );
+                                        } else if (typeof iconData === 'string') {
+                                            // Direct string URL
+                                            iconUrl = iconData;
+                                        } else if (typeof iconData === 'object' && iconData.url) {
+                                            // Icon object with url property
+                                            iconUrl = iconData.url;
+                                        }
+                                        
+                                        console.log(`PotentialGrowthSection icon:`, { iconData, iconUrl });
+                                        
+                                        return iconUrl ? (
+                                            <img
+                                                src={iconUrl}
+                                                alt={solution.heading || 'Solution'}
+                                                className="h-12 w-12 object-contain"
+                                                onError={(e) => {
+                                                    console.error('PotentialGrowthSection icon failed to load:', iconUrl);
+                                                    e.target.parentElement.innerHTML = `
+                                                        <div class="h-12 w-12 bg-cyan-600 rounded-full flex items-center justify-center text-white font-bold text-lg">
+                                                            ${solution.heading?.charAt(0) || '?'}
+                                                        </div>
+                                                    `;
+                                                }}
+                                            />
+                                        ) : (
+                                            <div className="h-12 w-12 bg-cyan-600 rounded-full flex items-center justify-center text-white font-bold text-lg">
+                                                {solution.heading?.charAt(0) || '?'}
+                                            </div>
+                                        );
+                                    })()}
                                 </div>
                             </div>
                             <div className="text-center">

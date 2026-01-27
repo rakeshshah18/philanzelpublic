@@ -87,14 +87,35 @@ export default function EmpowerSection() {
                             {/* Image */}
                             <div className="w-full lg:w-1/2">
                                 <div className="relative overflow-hidden rounded-lg shadow-lg">
-                                    <img
-                                        src={getImageUrl(item.image, 'https://via.placeholder.com/600x400/6b7280/ffffff?text=Empowerment')}
-                                        alt={item.heading || 'Empowerment'}
-                                        className="w-full h-64 sm:h-80 lg:h-96 object-cover hover:scale-105 transition-transform duration-300"
-                                        onError={(e) => {
-                                            handleImageError(e, 'https://via.placeholder.com/600x400/6b7280/ffffff?text=Error');
-                                        }}
-                                    />
+                                    {(() => {
+                                        // Handle both string URLs and image objects
+                                        const imageData = item.image;
+                                        let imageUrl = null;
+                                        
+                                        if (!imageData) {
+                                            imageUrl = 'https://via.placeholder.com/600x400/6b7280/ffffff?text=Empowerment';
+                                        } else if (typeof imageData === 'string') {
+                                            // Direct string URL
+                                            imageUrl = imageData;
+                                        } else if (typeof imageData === 'object' && imageData.url) {
+                                            // Image object with url property
+                                            imageUrl = imageData.url;
+                                        }
+                                        
+                                        console.log(`EmpowerSection image:`, { imageData, imageUrl });
+                                        
+                                        return (
+                                            <img
+                                                src={imageUrl}
+                                                alt={item.heading || 'Empowerment'}
+                                                className="w-full h-64 sm:h-80 lg:h-96 object-cover hover:scale-105 transition-transform duration-300"
+                                                onError={(e) => {
+                                                    console.error('EmpowerSection image failed to load:', imageUrl);
+                                                    e.target.src = 'https://via.placeholder.com/600x400/6b7280/ffffff?text=Error';
+                                                }}
+                                            />
+                                        );
+                                    })()}
                                 </div>
                             </div>
                             <div className="w-full lg:w-1/2">

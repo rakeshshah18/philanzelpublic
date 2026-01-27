@@ -62,25 +62,44 @@ export default function OurProcessSection({ section }) {
                                 </div>
                             ));
                         }
-                        const subheadingArr = data.subheading || [];
-                        const subdescriptionArr = data.subdescription || [];
                         const imagesArr = data.images || [];
                         const count = Math.max(subheadingArr.length, subdescriptionArr.length, imagesArr.length);
                         if (count > 0) {
-                            return Array.from({ length: count }).map((_, i) => (
-                                <div key={i} className="bg-cyan-50 rounded-lg shadow p-8 flex flex-col items-center text-center">
-                                    {imagesArr[i] && (
-                                        <img
-                                            src={getImageUrl(imagesArr[i])}
-                                            alt={subheadingArr[i] || `Step ${i + 1}`}
-                                            className="mb-4 rounded-lg w-20 h-20 object-cover"
-                                            onError={(e) => handleImageError(e)}
-                                        />
-                                    )}
-                                    <h4 className="font-bold text-lg mb-2">{subheadingArr[i] || `Step ${i + 1}`}</h4>
-                                    <div className="text-gray-600 text-sm" dangerouslySetInnerHTML={{ __html: subdescriptionArr[i] || "" }} />
-                                </div>
-                            ));
+                            return Array.from({ length: count }).map((_, i) => {
+                                // Handle both string URLs and image objects
+                                const imageData = imagesArr[i];
+                                let imageUrl = null;
+                                
+                                if (!imageData) {
+                                    imageUrl = null;
+                                } else if (typeof imageData === 'string') {
+                                    // Direct string URL
+                                    imageUrl = imageData;
+                                } else if (typeof imageData === 'object' && imageData.url) {
+                                    // Image object with url property
+                                    imageUrl = imageData.url;
+                                }
+                                
+                                console.log(`OurProcessSection image ${i}:`, { imageData, imageUrl });
+                                
+                                return (
+                                    <div key={i} className="bg-cyan-50 rounded-lg shadow p-8 flex flex-col items-center text-center">
+                                        {imageUrl && (
+                                            <img
+                                                src={imageUrl}
+                                                alt={subheadingArr[i] || `Step ${i + 1}`}
+                                                className="mb-4 rounded-lg w-20 h-20 object-cover"
+                                                onError={(e) => {
+                                                    console.error(`OurProcessSection image ${i} failed to load:`, imageUrl);
+                                                    e.target.style.display = 'none';
+                                                }}
+                                            />
+                                        )}
+                                        <h4 className="font-bold text-lg mb-2">{subheadingArr[i] || `Step ${i + 1}`}</h4>
+                                        <div className="text-gray-600 text-sm" dangerouslySetInnerHTML={{ __html: subdescriptionArr[i] || "" }} />
+                                    </div>
+                                );
+                            });
                         }
                         return <div className="text-gray-500 col-span-4">No steps found.</div>;
                     })()}
