@@ -9,6 +9,8 @@ export default function Navigation({ loggedIn, user, onLogout }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isServicesDropdownOpen, setIsServicesDropdownOpen] = useState(false)
   const [isCalculatorsDropdownOpen, setIsCalculatorsDropdownOpen] = useState(false)
+  const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false)
+  const [isMobileCalculatorsOpen, setIsMobileCalculatorsOpen] = useState(false)
   const [services, setServices] = useState([])
   const [calculators, setCalculators] = useState([])
 
@@ -239,27 +241,60 @@ export default function Navigation({ loggedIn, user, onLogout }) {
               <Link href="/about" className="block px-3 py-2 text-base font-medium text-gray-600 hover:text-cyan-600" onClick={() => setIsMenuOpen(false)}>
                 About Us
               </Link>
-              <Link href="/services" className="block px-3 py-2 text-base font-medium text-gray-600 hover:text-cyan-600" onClick={() => setIsMenuOpen(false)}>
-                Our Services
-              </Link>
 
-              {/* Mobile Calculators */}
-              <div className="space-y-1">
-                {calculators
-                  .filter((calculator) => {
-                    const excludedCalculators = ['Pension', 'Crorepati calculator', 'Lumpsum investment', 'Systematic investment planner', 'Systematic withdrawal planner']
-                    return !excludedCalculators.includes(calculator.name)
-                  })
-                  .map((calculator) => (
-                    <Link
-                      key={calculator._id}
-                      href={`/calculators/${calculator.slug}`}
-                      className="block px-3 py-2 text-base font-medium text-gray-600 hover:text-cyan-600"
-                      onClick={() => setIsMenuOpen(false)}
-                    >
-                      {calculator.name}
-                    </Link>
-                  ))}
+              {/* Mobile Services Dropdown */}
+              <div>
+                <button
+                  onClick={() => setIsMobileServicesOpen(!isMobileServicesOpen)}
+                  className="w-full text-left px-3 py-2 text-base font-medium text-gray-600 hover:text-cyan-600 flex items-center justify-between"
+                >
+                  <span>Our Services</span>
+                  <ChevronDown className={`h-4 w-4 transition-transform ${isMobileServicesOpen ? 'rotate-180' : ''}`} />
+                </button>
+                {isMobileServicesOpen && (
+                  <div className="pl-4 space-y-1">
+                    {services.map((service) => (
+                      <Link
+                        key={service._id || service.slug}
+                        href={`/services/${service.slug}`}
+                        className="block px-3 py-2 text-sm text-gray-600 hover:text-cyan-600 hover:bg-gray-100 rounded"
+                        onClick={() => setIsMenuOpen(false)}
+                      >
+                        {service.tabTitle}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* Mobile Calculators Dropdown */}
+              <div>
+                <button
+                  onClick={() => setIsMobileCalculatorsOpen(!isMobileCalculatorsOpen)}
+                  className="w-full text-left px-3 py-2 text-base font-medium text-gray-600 hover:text-cyan-600 flex items-center justify-between"
+                >
+                  <span>Calculators</span>
+                  <ChevronDown className={`h-4 w-4 transition-transform ${isMobileCalculatorsOpen ? 'rotate-180' : ''}`} />
+                </button>
+                {isMobileCalculatorsOpen && (
+                  <div className="pl-4 space-y-1">
+                    {calculators
+                      .filter((calculator) => {
+                        const excludedCalculators = ['Pension', 'Crorepati calculator', 'Lumpsum investment', 'Systematic investment planner', 'Systematic withdrawal planner']
+                        return !excludedCalculators.includes(calculator.name)
+                      })
+                      .map((calculator) => (
+                        <Link
+                          key={calculator._id}
+                          href={`/calculators/${calculator.slug}`}
+                          className="block px-3 py-2 text-sm text-gray-600 hover:text-cyan-600 hover:bg-gray-100 rounded"
+                          onClick={() => setIsMenuOpen(false)}
+                        >
+                          {calculator.name}
+                        </Link>
+                      ))}
+                  </div>
+                )}
               </div>
 
               <Link href="/events" className="block px-3 py-2 text-base font-medium text-gray-600 hover:text-cyan-600" onClick={() => setIsMenuOpen(false)}>
@@ -273,6 +308,9 @@ export default function Navigation({ loggedIn, user, onLogout }) {
               </Link>
               <Link href="/contact" className="block px-3 py-2 text-base font-medium text-gray-600 hover:text-cyan-600" onClick={() => setIsMenuOpen(false)}>
                 Contact Us
+              </Link>
+              <Link href="/blog" className="block px-3 py-2 text-base font-medium text-gray-600 hover:text-cyan-600" onClick={() => setIsMenuOpen(false)}>
+                Blogs
               </Link>
 
               <div className="border-t border-gray-200 pt-4 mt-4">
