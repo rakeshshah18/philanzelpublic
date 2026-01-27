@@ -4,8 +4,9 @@ import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { useState, useEffect } from "react"
 import { Menu, X, ChevronDown, User as UserIcon } from "lucide-react"
+import { isUserLoggedIn, getLoggedInUser, logoutUser } from "@/utils/auth"
 
-export default function Navigation({ loggedIn, user, onLogout }) {
+export default function Navigation({ loggedIn: initialLoggedIn, user: initialUser, onLogout: externalOnLogout }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isServicesDropdownOpen, setIsServicesDropdownOpen] = useState(false)
   const [isCalculatorsDropdownOpen, setIsCalculatorsDropdownOpen] = useState(false)
@@ -13,8 +14,24 @@ export default function Navigation({ loggedIn, user, onLogout }) {
   const [isMobileCalculatorsOpen, setIsMobileCalculatorsOpen] = useState(false)
   const [services, setServices] = useState([])
   const [calculators, setCalculators] = useState([])
+  const [loggedIn, setLoggedIn] = useState(false)
+  const [user, setUser] = useState(null)
 
   const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "https://philanzel-backend.onrender.com"
+
+  // Check login status on mount and when navigating
+  useEffect(() => {
+    const checkLoginStatus = () => {
+      if (isUserLoggedIn()) {
+        setLoggedIn(true)
+        setUser(getLoggedInUser())
+      } else {
+        setLoggedIn(false)
+        setUser(null)
+      }
+    }
+    checkLoginStatus()
+  }, [])
 
   useEffect(() => {
     const fetchServices = async () => {
@@ -212,7 +229,12 @@ export default function Navigation({ loggedIn, user, onLogout }) {
                   </div>
                 </div>
                 <Button
-                  onClick={onLogout}
+                  onClick={() => {
+                    logoutUser()
+                    setLoggedIn(false)
+                    setUser(null)
+                    if (externalOnLogout) externalOnLogout()
+                  }}
                   variant="outline"
                   className="border-cyan-600 text-cyan-600 hover:bg-cyan-50 hover:text-cyan-700"
                 >
@@ -326,7 +348,16 @@ export default function Navigation({ loggedIn, user, onLogout }) {
                         <span className="text-sm font-medium text-gray-700">{user.name || user.email}</span>
                       </div>
                     </div>
-                    <Button onClick={onLogout} className="w-full bg-gray-600 hover:bg-gray-700 text-white">
+                    <Button
+                      onClick={() => {
+                        logoutUser()
+                        setLoggedIn(false)
+                        setUser(null)
+                        setIsMenuOpen(false)
+                        if (externalOnLogout) externalOnLogout()
+                      }}
+                      className="w-full bg-gray-600 hover:bg-gray-700 text-white"
+                    >
                       Logout
                     </Button>
                   </div>
