@@ -74,11 +74,8 @@ export default function Navigation({ loggedIn, user, onLogout }) {
           console.log('Calculators API response:', result)
 
           if (result.success && result.data && result.data.length > 0) {
-            // Exclude certain calculators from mobile view
-            // const excludedCalculators = ['Pension', 'Crorepati calculator', 'Lumpsum investment', 'Systematic investment planner', 'Systematic withdrawal planner']
-            
             const calculatorsList = result.data
-              .filter((calculator) => calculator.name && calculator.slug && !excludedCalculators.includes(calculator.name))
+              .filter((calculator) => calculator.name && calculator.slug)
               .map((calculator) => ({
                 _id: calculator._id,
                 name: calculator.name,
