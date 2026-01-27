@@ -1,6 +1,7 @@
 "use client"
 import { useEffect, useState } from "react"
 import { DollarSign, Users, Globe, Building } from "lucide-react"
+import { getImageUrl, handleImageError, logImageDebug } from "@/lib/imageUtils"
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:8000"
 
@@ -19,6 +20,7 @@ export default function OurProcessSection({ section }) {
                 .then(result => {
                     if (result.status === "success" && result.data && result.data.length > 0) {
                         setData(result.data[0])
+                        logImageDebug("OurProcessSection", result.data[0].images);
                     } else {
                         throw new Error(result.message || 'Failed to fetch data');
                     }
@@ -69,9 +71,10 @@ export default function OurProcessSection({ section }) {
                                 <div key={i} className="bg-cyan-50 rounded-lg shadow p-8 flex flex-col items-center text-center">
                                     {imagesArr[i] && (
                                         <img
-                                            src={imagesArr[i]}
+                                            src={getImageUrl(imagesArr[i])}
                                             alt={subheadingArr[i] || `Step ${i + 1}`}
                                             className="mb-4 rounded-lg w-20 h-20 object-cover"
+                                            onError={(e) => handleImageError(e)}
                                         />
                                     )}
                                     <h4 className="font-bold text-lg mb-2">{subheadingArr[i] || `Step ${i + 1}`}</h4>
