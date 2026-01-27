@@ -345,7 +345,7 @@ export default function Navigation({ loggedIn: initialLoggedIn, user: initialUse
                       <UserIcon className="h-5 w-5 text-gray-600" />
                       <div className="flex flex-col">
                         <span className="text-xs font-medium text-gray-500">Welcome</span>
-                        <span className="text-sm font-medium text-gray-700">{user.name || user.email}</span>
+                        <span className="text-sm font-medium text-gray-700">{user.name}</span>
                       </div>
                     </div>
                     <Button
