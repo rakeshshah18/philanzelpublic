@@ -75,11 +75,10 @@ const ServicesTabsSection = () => {
               {tabs.map((tab, index) => (
                 <button
                   key={tab.label || index}
-                  className={`px-3 py-2 text-sm font-medium border-b-2 transition-colors whitespace-nowrap flex-shrink-0 ${
-                    activeTab === index
+                  className={`px-3 py-2 text-sm font-medium border-b-2 transition-colors whitespace-nowrap flex-shrink-0 ${activeTab === index
                       ? "border-cyan-600 text-cyan-700"
                       : "border-transparent text-gray-700 hover:text-cyan-600"
-                  }`}
+                    }`}
                   onClick={() => handleTabClick(index)}
                   type="button"
                   aria-selected={activeTab === index}
@@ -94,11 +93,7 @@ const ServicesTabsSection = () => {
               <div className="flex flex-col md:flex-row gap-6 items-center">
                 {activeService.image && (
                   <img
-                    src={
-                      activeService.image.startsWith("http")
-                        ? activeService.image
-                        : `${BASE_URL}${activeService.image}`
-                    }
+                    src={activeService.image}
                     alt={`${activeService.label || ""} service`}
                     className="w-48 h-48 object-cover rounded-lg shadow"
                     loading="lazy"
@@ -131,11 +126,7 @@ const ServicesTabsSection = () => {
             <div className="relative rounded-lg overflow-hidden shadow-lg">
               {common.image && (
                 <img
-                  src={
-                    common.image.startsWith("http")
-                      ? common.image
-                      : `${BASE_URL}${common.image}`
-                  }
+                  src={common.image}
                   alt="Common Service"
                   className="w-full h-80 object-cover"
                   loading="lazy"

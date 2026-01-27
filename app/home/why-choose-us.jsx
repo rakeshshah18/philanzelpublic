@@ -25,7 +25,7 @@ const WhyChooseUs = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="relative">
             <img
-              src={data.image?.url ? `${BASE_URL}${data.image.url}` : "/pms-img-2.jpg"}
+              src={data.image?.url || "/pms-img-2.jpg"}
               alt={data.image?.originalName || "Professional financial advisors"}
               className="rounded-lg shadow-xl"
             />

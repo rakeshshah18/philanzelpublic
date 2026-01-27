@@ -68,15 +68,11 @@ export default function EventImagesClient() {
                 key={img._id}
                 className="overflow-hidden rounded-lg shadow cursor-pointer"
                 onClick={() =>
-                  setSelectedImage(
-                    img.imageUrl.startsWith("http")
-                      ? img.imageUrl
-                      : `${BASE_URL}${img.imageUrl}`
-                  )
+                  setSelectedImage(img.imageUrl)
                 }
               >
                 <img
-                  src={img.imageUrl.startsWith("http") ? img.imageUrl : `${BASE_URL}${img.imageUrl}`}
+                  src={img.imageUrl}
                   alt={`Event ${img._id}`}
                   className="w-full h-64 object-cover"
                   loading="lazy"

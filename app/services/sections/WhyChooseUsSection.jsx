@@ -36,7 +36,7 @@ export default function WhyChooseUsSection({ section }) {
     if (!data) return null;
 
     const imageUrl = data.images?.[0] || data.image || "";
-    const fullImageUrl = imageUrl && !imageUrl.startsWith('http') ? `${BASE_URL}${imageUrl}` : imageUrl;
+    const fullImageUrl = imageUrl || "/images/pms-img-1.jpg";
 
     return (
         <section className="py-20 bg-white">

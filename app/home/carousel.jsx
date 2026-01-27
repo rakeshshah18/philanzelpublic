@@ -86,7 +86,7 @@ export default function Carousel() {
                     )}
                 </div>
                 <div className="flex-1 min-w-[300px] h-full flex items-center justify-center bg-gray-50">
-                    <img src={image?.url} alt={image?.altText || heading} className="object-cover w-full h-80 md:h-96 rounded-none" />
+                    <img src={image?.url || "/images/default-carousel.jpg"} alt={image?.altText || heading} className="object-cover w-full h-80 md:h-96 rounded-none" />
                 </div>
             </div>
             <button

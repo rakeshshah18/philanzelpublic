@@ -9,12 +9,12 @@ export default function WhyChooseUsSection() {
         const fetchChooseUsData = async () => {
             try {
                 setIsLoading(true)
-                
+
                 const response = await fetch(`${BASE_URL}/api/partner/why-choose-philanzel/public`)
-                
+
                 if (response.ok) {
                     const result = await response.json()
-                    
+
                     if (result.status === "success" && result.data && result.data.length > 0) {
                         setChooseUsData(result.data[0])
                     } else {
@@ -62,7 +62,7 @@ export default function WhyChooseUsSection() {
             .replace(/\\u003C/g, '<')
             .replace(/\\u003E/g, '>')
             .replace(/&amp;/g, '&')
-        
+
         return <div dangerouslySetInnerHTML={{ __html: cleanHTML }} />
     }
 
@@ -87,7 +87,7 @@ export default function WhyChooseUsSection() {
                     <div className="w-full lg:w-1/2">
                         <div className="relative overflow-hidden rounded-lg shadow-lg">
                             <img
-                                src={chooseUsData?.image ? `${BASE_URL}/uploads/images/${chooseUsData.image}` : 'https://via.placeholder.com/600x400/6b7280/ffffff?text=Why+Choose+Us'}
+                                src={chooseUsData?.image || 'https://via.placeholder.com/600x400/6b7280/ffffff?text=Why+Choose+Us'}
                                 alt={chooseUsData?.heading || 'Why Choose Philanzel'}
                                 className="w-full h-64 sm:h-80 lg:h-96 object-cover hover:scale-105 transition-transform duration-300"
                                 onError={(e) => {

@@ -69,7 +69,7 @@ export default function OurProcessSection({ section }) {
                                 <div key={i} className="bg-cyan-50 rounded-lg shadow p-8 flex flex-col items-center text-center">
                                     {imagesArr[i] && (
                                         <img
-                                            src={imagesArr[i] && !imagesArr[i].startsWith('http') ? `${BASE_URL}${imagesArr[i]}` : imagesArr[i]}
+                                            src={imagesArr[i]}
                                             alt={subheadingArr[i] || `Step ${i + 1}`}
                                             className="mb-4 rounded-lg w-20 h-20 object-cover"
                                         />

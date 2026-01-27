@@ -33,7 +33,7 @@ export default function JoinTeam() {
             try {
                 setLoading(true)
                 const response = await fetch(`${BASE_URL}/api/career-posts/public`)
-                
+
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`)
                 }
@@ -60,7 +60,7 @@ export default function JoinTeam() {
         if (typeof window !== 'undefined') {
             window.setCaptchaToken = setCaptchaToken
         }
-        
+
         return () => {
             if (typeof window !== 'undefined') {
                 delete window.setCaptchaToken
@@ -220,189 +220,185 @@ export default function JoinTeam() {
             )}
 
             <section className="py-20 bg-white">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="grid lg:grid-cols-2 gap-12 items-center">
-                    <div className="relative">
-                        <div className="aspect-[4/5] rounded-2xl overflow-hidden relative">
-                            {loading ? (
-                                <div className="w-full h-full bg-gradient-to-br from-gray-200 to-gray-300 animate-pulse flex items-center justify-center">
-                                    <div className="text-gray-500">Loading...</div>
-                                </div>
-                            ) : error || !careerData?.image ? (
-                                <div className="bg-gradient-to-br from-cyan-800 via-cyan-700 to-cyan-900 relative w-full h-full">
-                                    <div className="absolute inset-0 bg-gradient-to-br from-cyan-800/90 via-cyan-700/80 to-cyan-900/90"></div>
-                                    <div className="absolute top-10 left-10 w-16 h-16 bg-white/10 rounded-full blur-sm"></div>
-                                    <div className="absolute top-20 right-20 w-24 h-24 bg-white/15 rounded-full blur-md"></div>
-                                    <div className="absolute bottom-20 left-20 w-20 h-20 bg-white/8 rounded-full blur-sm"></div>
-                                    <div className="absolute top-32 left-32 w-12 h-12 bg-white/12 rounded-full blur-sm"></div>
-                                    <div className="absolute bottom-32 right-16 w-18 h-18 bg-white/10 rounded-full blur-md"></div>
-                                    <div className="absolute inset-0 flex items-center justify-center">
-                                        <div className="relative">
-                                            <div className="relative w-48 h-48 flex items-center justify-center">
-                                                <div className="absolute inset-0 bg-gradient-to-br from-orange-300 to-orange-400 rounded-3xl transform rotate-12 opacity-80"></div>
-                                                <div className="relative z-10">
-                                                    <svg viewBox="0 0 120 120" className="w-32 h-32 text-white">
-                                                        <path
-                                                            d="M20 100 L40 100 L40 80 L60 80 L60 60 L80 60 L80 40 L100 40 L100 20"
-                                                            stroke="currentColor"
-                                                            strokeWidth="4"
-                                                            fill="none"
-                                                            strokeLinecap="round"
-                                                            strokeLinejoin="round"
-                                                        />
-                                                        <path
-                                                            d="M85 25 L100 20 L95 35"
-                                                            stroke="currentColor"
-                                                            strokeWidth="4"
-                                                            fill="none"
-                                                            strokeLinecap="round"
-                                                            strokeLinejoin="round"
-                                                        />
-                                                        <line x1="25" y1="95" x2="35" y2="95" stroke="currentColor" strokeWidth="3" opacity="0.7" />
-                                                        <line x1="45" y1="75" x2="55" y2="75" stroke="currentColor" strokeWidth="3" opacity="0.7" />
-                                                        <line x1="65" y1="55" x2="75" y2="55" stroke="currentColor" strokeWidth="3" opacity="0.7" />
-                                                    </svg>
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="grid lg:grid-cols-2 gap-12 items-center">
+                        <div className="relative">
+                            <div className="aspect-[4/5] rounded-2xl overflow-hidden relative">
+                                {loading ? (
+                                    <div className="w-full h-full bg-gradient-to-br from-gray-200 to-gray-300 animate-pulse flex items-center justify-center">
+                                        <div className="text-gray-500">Loading...</div>
+                                    </div>
+                                ) : error || !careerData?.image ? (
+                                    <div className="bg-gradient-to-br from-cyan-800 via-cyan-700 to-cyan-900 relative w-full h-full">
+                                        <div className="absolute inset-0 bg-gradient-to-br from-cyan-800/90 via-cyan-700/80 to-cyan-900/90"></div>
+                                        <div className="absolute top-10 left-10 w-16 h-16 bg-white/10 rounded-full blur-sm"></div>
+                                        <div className="absolute top-20 right-20 w-24 h-24 bg-white/15 rounded-full blur-md"></div>
+                                        <div className="absolute bottom-20 left-20 w-20 h-20 bg-white/8 rounded-full blur-sm"></div>
+                                        <div className="absolute top-32 left-32 w-12 h-12 bg-white/12 rounded-full blur-sm"></div>
+                                        <div className="absolute bottom-32 right-16 w-18 h-18 bg-white/10 rounded-full blur-md"></div>
+                                        <div className="absolute inset-0 flex items-center justify-center">
+                                            <div className="relative">
+                                                <div className="relative w-48 h-48 flex items-center justify-center">
+                                                    <div className="absolute inset-0 bg-gradient-to-br from-orange-300 to-orange-400 rounded-3xl transform rotate-12 opacity-80"></div>
+                                                    <div className="relative z-10">
+                                                        <svg viewBox="0 0 120 120" className="w-32 h-32 text-white">
+                                                            <path
+                                                                d="M20 100 L40 100 L40 80 L60 80 L60 60 L80 60 L80 40 L100 40 L100 20"
+                                                                stroke="currentColor"
+                                                                strokeWidth="4"
+                                                                fill="none"
+                                                                strokeLinecap="round"
+                                                                strokeLinejoin="round"
+                                                            />
+                                                            <path
+                                                                d="M85 25 L100 20 L95 35"
+                                                                stroke="currentColor"
+                                                                strokeWidth="4"
+                                                                fill="none"
+                                                                strokeLinecap="round"
+                                                                strokeLinejoin="round"
+                                                            />
+                                                            <line x1="25" y1="95" x2="35" y2="95" stroke="currentColor" strokeWidth="3" opacity="0.7" />
+                                                            <line x1="45" y1="75" x2="55" y2="75" stroke="currentColor" strokeWidth="3" opacity="0.7" />
+                                                            <line x1="65" y1="55" x2="75" y2="55" stroke="currentColor" strokeWidth="3" opacity="0.7" />
+                                                        </svg>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            ) : (
-                                <img
-                                    src={`${BASE_URL}/${careerData.image.path.replace(/\\/g, '/').replace('src/', '')}`}
-                                    alt={careerData.image.originalName || "Career Image"}
-                                    className="w-full h-full object-cover"
-                                    onError={(e) => {
-                                        console.error('Image failed to load, trying alternative path');
-                                        if (e.target.src.includes('/uploads/')) {
-                                            e.target.src = `${BASE_URL}/uploads/images/${careerData.image.filename}`;
-                                        } else {
+                                ) : (
+                                    <img
+                                        src={careerData.image?.url || careerData.image?.path || careerData.image}
+                                        alt={careerData.image?.originalName || "Career Image"}
+                                        className="w-full h-full object-cover"
+                                        onError={(e) => {
+                                            console.error('Image failed to load');
                                             e.target.style.display = 'none';
                                             e.target.parentElement.innerHTML = `
-                                                <div class="bg-gradient-to-br from-cyan-800 via-cyan-700 to-cyan-900 relative w-full h-full">
-                                                    <div class="absolute inset-0 bg-gradient-to-br from-cyan-800/90 via-cyan-700/80 to-cyan-900/90"></div>
-                                                    <div class="absolute inset-0 flex items-center justify-center text-white text-lg">
-                                                        Career Image
-                                                    </div>
+                                            <div class="bg-gradient-to-br from-cyan-800 via-cyan-700 to-cyan-900 relative w-full h-full">
+                                                <div class="absolute inset-0 bg-gradient-to-br from-cyan-800/90 via-cyan-700/80 to-cyan-900/90"></div>
+                                                <div class="absolute inset-0 flex items-center justify-center text-white text-lg">
+                                                    Career Image
                                                 </div>
-                                            `;
-                                        }
-                                    }}
-                                />
-                            )}
-                        </div>
-                    </div>
-                    <div className="space-y-8">
-                        <div>
-                            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-                                {loading ? (
-                                    <div className="h-10 bg-gray-200 rounded animate-pulse"></div>
-                                ) : (
-                                    careerData?.heading || "Join Our Team"
-                                )}
-                            </h2>
-                            <div className="text-gray-600 text-md">
-                                {loading ? (
-                                    <div className="h-6 bg-gray-200 rounded animate-pulse"></div>
-                                ) : (
-                                    <p className="text-gray-600 text-md">
-                                        {careerData?.description || "Fill out the form below to apply for exciting career opportunities with us!"}
-                                    </p>
+                                            </div>
+                                        `;
+                                        }}
+                                    />
                                 )}
                             </div>
                         </div>
+                        <div className="space-y-8">
+                            <div>
+                                <h2 className="text-4xl font-bold text-gray-900 mb-4">
+                                    {loading ? (
+                                        <div className="h-10 bg-gray-200 rounded animate-pulse"></div>
+                                    ) : (
+                                        careerData?.heading || "Join Our Team"
+                                    )}
+                                </h2>
+                                <div className="text-gray-600 text-md">
+                                    {loading ? (
+                                        <div className="h-6 bg-gray-200 rounded animate-pulse"></div>
+                                    ) : (
+                                        <p className="text-gray-600 text-md">
+                                            {careerData?.description || "Fill out the form below to apply for exciting career opportunities with us!"}
+                                        </p>
+                                    )}
+                                </div>
+                            </div>
 
-                        <form onSubmit={handleSubmit} className="space-y-6">
-                            {/* Full Name */}
-                            <div className="space-y-2">
-                                <Label htmlFor="fullName" className="text-sm font-medium text-gray-700">
-                                    Full Name
-                                </Label>
-                                <Input
-                                    id="fullName"
-                                    type="text"
-                                    value={formData.fullName}
-                                    onChange={(e) => handleInputChange("fullName", e.target.value)}
-                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
-                                    placeholder="Enter your full name"
-                                    required
-                                />
-                            </div>
-                            <div className="space-y-2">
-                                <Label htmlFor="email" className="text-sm font-medium text-gray-700">
-                                    Email Address
-                                </Label>
-                                <Input
-                                    id="email"
-                                    type="email"
-                                    value={formData.email}
-                                    onChange={(e) => handleInputChange("email", e.target.value)}
-                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
-                                    placeholder="Enter your email address"
-                                    required
-                                />
-                            </div>
-                            <div className="space-y-2">
-                                <Label htmlFor="phone" className="text-sm font-medium text-gray-700">
-                                    Phone Number
-                                </Label>
-                                <Input
-                                    id="phone"
-                                    type="tel"
-                                    value={formData.phone}
-                                    onChange={(e) => handleInputChange("phone", e.target.value)}
-                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
-                                    placeholder="Enter your phone number"
-                                    required
-                                />
-                            </div>
-                            <div className="space-y-2">
-                                <Label htmlFor="message" className="text-sm font-medium text-gray-700">
-                                    Message
-                                </Label>
-                                <Textarea
-                                    id="message"
-                                    value={formData.message}
-                                    onChange={(e) => handleInputChange("message", e.target.value)}
-                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent min-h-[120px] resize-none"
-                                    placeholder="Tell us about yourself and why you'd like to join our team"
-                                    required
-                                />
-                            </div>
-                            <div className="space-y-2">
-                                <Label htmlFor="resume" className="text-sm font-medium text-gray-700">
-                                    Upload Your Resume
-                                </Label>
-                                <div className="relative">
+                            <form onSubmit={handleSubmit} className="space-y-6">
+                                {/* Full Name */}
+                                <div className="space-y-2">
+                                    <Label htmlFor="fullName" className="text-sm font-medium text-gray-700">
+                                        Full Name
+                                    </Label>
                                     <Input
-                                        id="resume"
-                                        type="file"
-                                        onChange={handleFileChange}
-                                        accept=".pdf,.doc,.docx"
-                                        className="w-full px-2 border border-gray-400 rounded-lg focus:ring-1 focus:ring-cyan-500 focus:border-transparent file:mr-5 file:py-0 file:px-5 file:rounded-lg file:border-0 file:bg-cyan-50 file:text-cyan-700 hover:file:bg-cyan-100"
+                                        id="fullName"
+                                        type="text"
+                                        value={formData.fullName}
+                                        onChange={(e) => handleInputChange("fullName", e.target.value)}
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
+                                        placeholder="Enter your full name"
+                                        required
                                     />
                                 </div>
-                                <p className="text-sm text-gray-500">
-                                    Accepted formats: .pdf, .doc, .docx (Max: 5MB)
-                                </p>
-                            </div>
-                            <div className="space-y-2">
-                                <Label className="text-sm font-medium text-gray-700">
-                                    Security Verification
-                                </Label>
-                                <div 
-                                    className="g-recaptcha" 
-                                    data-sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || "your-site-key-here"}
-                                    data-callback="onCaptchaSuccess"
-                                    data-expired-callback="onCaptchaExpired"
-                                ></div>
-                                <p className="text-sm text-gray-500">
-                                    Please complete the security verification above.
-                                </p>
-                            </div>
+                                <div className="space-y-2">
+                                    <Label htmlFor="email" className="text-sm font-medium text-gray-700">
+                                        Email Address
+                                    </Label>
+                                    <Input
+                                        id="email"
+                                        type="email"
+                                        value={formData.email}
+                                        onChange={(e) => handleInputChange("email", e.target.value)}
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
+                                        placeholder="Enter your email address"
+                                        required
+                                    />
+                                </div>
+                                <div className="space-y-2">
+                                    <Label htmlFor="phone" className="text-sm font-medium text-gray-700">
+                                        Phone Number
+                                    </Label>
+                                    <Input
+                                        id="phone"
+                                        type="tel"
+                                        value={formData.phone}
+                                        onChange={(e) => handleInputChange("phone", e.target.value)}
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
+                                        placeholder="Enter your phone number"
+                                        required
+                                    />
+                                </div>
+                                <div className="space-y-2">
+                                    <Label htmlFor="message" className="text-sm font-medium text-gray-700">
+                                        Message
+                                    </Label>
+                                    <Textarea
+                                        id="message"
+                                        value={formData.message}
+                                        onChange={(e) => handleInputChange("message", e.target.value)}
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent min-h-[120px] resize-none"
+                                        placeholder="Tell us about yourself and why you'd like to join our team"
+                                        required
+                                    />
+                                </div>
+                                <div className="space-y-2">
+                                    <Label htmlFor="resume" className="text-sm font-medium text-gray-700">
+                                        Upload Your Resume
+                                    </Label>
+                                    <div className="relative">
+                                        <Input
+                                            id="resume"
+                                            type="file"
+                                            onChange={handleFileChange}
+                                            accept=".pdf,.doc,.docx"
+                                            className="w-full px-2 border border-gray-400 rounded-lg focus:ring-1 focus:ring-cyan-500 focus:border-transparent file:mr-5 file:py-0 file:px-5 file:rounded-lg file:border-0 file:bg-cyan-50 file:text-cyan-700 hover:file:bg-cyan-100"
+                                        />
+                                    </div>
+                                    <p className="text-sm text-gray-500">
+                                        Accepted formats: .pdf, .doc, .docx (Max: 5MB)
+                                    </p>
+                                </div>
+                                <div className="space-y-2">
+                                    <Label className="text-sm font-medium text-gray-700">
+                                        Security Verification
+                                    </Label>
+                                    <div
+                                        className="g-recaptcha"
+                                        data-sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || "your-site-key-here"}
+                                        data-callback="onCaptchaSuccess"
+                                        data-expired-callback="onCaptchaExpired"
+                                    ></div>
+                                    <p className="text-sm text-gray-500">
+                                        Please complete the security verification above.
+                                    </p>
+                                </div>
 
-                            <script dangerouslySetInnerHTML={{
-                                __html: `
+                                <script dangerouslySetInnerHTML={{
+                                    __html: `
                                     window.onCaptchaSuccess = function(token) {
                                         window.setCaptchaToken && window.setCaptchaToken(token);
                                     };
@@ -410,28 +406,28 @@ export default function JoinTeam() {
                                         window.setCaptchaToken && window.setCaptchaToken(null);
                                     };
                                 `
-                            }} />
-                            <div className="bg-blue-50 p-4 rounded-lg">
-                                <p className="text-sm text-gray-600">
-                                    <strong>Note:</strong> If you were unable to submit your application, please feel free to email us your details and resume directly at{" "}
-                                    <a href="mailto:coach@philanzel.com" className="text-cyan-600 hover:underline">
-                                        coach@philanzel.com
-                                    </a>
-                                    .
-                                </p>
-                            </div>
-                            <Button
-                                type="submit"
-                                disabled={isSubmitting}
-                                className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 text-lg"
-                            >
-                                {isSubmitting ? "Submitting..." : "Submit Application"}
-                            </Button>
-                        </form>
+                                }} />
+                                <div className="bg-blue-50 p-4 rounded-lg">
+                                    <p className="text-sm text-gray-600">
+                                        <strong>Note:</strong> If you were unable to submit your application, please feel free to email us your details and resume directly at{" "}
+                                        <a href="mailto:coach@philanzel.com" className="text-cyan-600 hover:underline">
+                                            coach@philanzel.com
+                                        </a>
+                                        .
+                                    </p>
+                                </div>
+                                <Button
+                                    type="submit"
+                                    disabled={isSubmitting}
+                                    className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 text-lg"
+                                >
+                                    {isSubmitting ? "Submitting..." : "Submit Application"}
+                                </Button>
+                            </form>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
         </>
     )
 }

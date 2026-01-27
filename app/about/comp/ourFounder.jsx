@@ -56,7 +56,7 @@ export function OurFounder() {
                             Founder & CEO
                         </p>
                     </div>
-                    
+
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                         <div className="bg-gray-50 p-8 rounded-lg shadow-lg">
                             <h3 className="text-2xl font-serif font-bold text-gray-900 mb-6">
@@ -123,7 +123,7 @@ export function OurFounder() {
                     </div>
                     <div className="flex justify-center">
                         <img
-                            src={founderData.image ? founderData.image.url : "/images/founder-rajdeep.jpg"}
+                            src={founderData.image?.url || "/images/founder-rajdeep.jpg"}
                             alt={founderData.image?.altText || `${founderData.name || 'Rajdeep Singh'} - ${founderData.designation || 'Founder & CEO'}`}
                             className="rounded-lg shadow-xl max-w-md w-full object-cover"
                         />

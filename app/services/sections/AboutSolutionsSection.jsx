@@ -34,7 +34,7 @@ export default function AboutSolutionsSection({ section }) {
     if (error) return <section className="py-20 bg-white"><div className="max-w-7xl mx-auto px-4"><p className="text-red-500">Error: {error}</p></div></section>;
     if (!data) return null;
     const imageUrl = data.images?.[0] || "";
-    const fullImageUrl = imageUrl && !imageUrl.startsWith('http') ? `${BASE_URL}${imageUrl}` : imageUrl;
+    const fullImageUrl = imageUrl || "/images/pms-img-1.jpg";
 
     return (
         <section className="py-20 bg-white">

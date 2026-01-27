@@ -58,7 +58,7 @@ export function OurStory() {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                     <div className="relative">
                         <img
-                            src={aboutData.image?.url ? `${BASE_URL}${aboutData.image.url}` : "/images/pms-img-1.jpg"}
+                            src={aboutData.image?.url || "/images/pms-img-1.jpg"}
                             alt={aboutData.image?.altText || "About Us"}
                             className="rounded-lg shadow-xl"
                         />
@@ -72,7 +72,7 @@ export function OurStory() {
                         </div>
                         {aboutData.button && (
                             <div className="flex">
-                                <a 
+                                <a
                                     href={aboutData.button.link}
                                     target="_blank"
                                     rel="noopener noreferrer"

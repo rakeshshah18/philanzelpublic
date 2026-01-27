@@ -29,7 +29,7 @@ export default function AboutSolutionsSection({ section }) {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                     <div className="relative">
                         <img
-                            src={data.image?.url ? `${BASE_URL}${data.image.url}` : "/images/pms-img-1.jpg"}
+                            src={data.image?.url || "/images/pms-img-1.jpg"}
                             alt={data.image?.altText || "About Us"}
                             className="rounded-lg shadow-xl"
                         />

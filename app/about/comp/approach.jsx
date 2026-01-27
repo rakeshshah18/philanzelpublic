@@ -68,8 +68,8 @@ export function OurApproach() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                     <div>
                         <img
-                            src={approachData.image ? `${BASE_URL}${approachData.image.url}` : "/images/pms-img-1.jpg"}
-                            alt={approachData.image ? approachData.image.originalName : "Investment research and analysis"}
+                            src={approachData.image?.url || "/images/pms-img-1.jpg"}
+                            alt={approachData.image?.originalName || "Investment research and analysis"}
                             className="rounded-lg shadow-lg"
                         />
                     </div>
