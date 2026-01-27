@@ -206,7 +206,10 @@ export default function Navigation({ loggedIn, user, onLogout }) {
               <>
                 <div className="flex items-center space-x-2">
                   <UserIcon className="h-5 w-5 text-gray-600" />
-                  <span className="text-sm font-medium text-gray-700">{user.name || user.email}</span>
+                  <div className="flex flex-col">
+                    <span className="text-xs font-medium text-gray-500">Welcome</span>
+                    <span className="text-sm font-medium text-gray-700">{user.name || user.email}</span>
+                  </div>
                 </div>
                 <Button
                   onClick={onLogout}
@@ -314,8 +317,15 @@ export default function Navigation({ loggedIn, user, onLogout }) {
               </Link>
 
               <div className="border-t border-gray-200 pt-4 mt-4">
-                {loggedIn ? (
-                  <div className="px-3 py-2">
+                {loggedIn && user ? (
+                  <div className="px-3 py-2 space-y-3">
+                    <div className="flex items-center space-x-2 px-1">
+                      <UserIcon className="h-5 w-5 text-gray-600" />
+                      <div className="flex flex-col">
+                        <span className="text-xs font-medium text-gray-500">Welcome</span>
+                        <span className="text-sm font-medium text-gray-700">{user.name || user.email}</span>
+                      </div>
+                    </div>
                     <Button onClick={onLogout} className="w-full bg-gray-600 hover:bg-gray-700 text-white">
                       Logout
                     </Button>
