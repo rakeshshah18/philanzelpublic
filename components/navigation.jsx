@@ -245,16 +245,21 @@ export default function Navigation({ loggedIn, user, onLogout }) {
 
               {/* Mobile Calculators */}
               <div className="space-y-1">
-                {calculators.map((calculator) => (
-                  <Link
-                    key={calculator._id}
-                    href={`/calculators/${calculator.slug}`}
-                    className="block px-3 py-2 text-base font-medium text-gray-600 hover:text-cyan-600"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    {calculator.name}
-                  </Link>
-                ))}
+                {calculators
+                  .filter((calculator) => {
+                    const excludedCalculators = ['Pension', 'Crorepati calculator', 'Lumpsum investment', 'Systematic investment planner', 'Systematic withdrawal planner']
+                    return !excludedCalculators.includes(calculator.name)
+                  })
+                  .map((calculator) => (
+                    <Link
+                      key={calculator._id}
+                      href={`/calculators/${calculator.slug}`}
+                      className="block px-3 py-2 text-base font-medium text-gray-600 hover:text-cyan-600"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      {calculator.name}
+                    </Link>
+                  ))}
               </div>
 
               <Link href="/events" className="block px-3 py-2 text-base font-medium text-gray-600 hover:text-cyan-600" onClick={() => setIsMenuOpen(false)}>
