@@ -86,10 +86,11 @@ export default function EmpowerSection() {
                             <div className="w-full lg:w-1/2">
                                 <div className="relative overflow-hidden rounded-lg shadow-lg">
                                     <img
-                                        src={item.image || 'https://via.placeholder.com/600x400/6b7280/ffffff?text=Empowerment'}
+                                        src={item.image?.url || item.image || 'https://via.placeholder.com/600x400/6b7280/ffffff?text=Empowerment'}
                                         alt={item.heading || 'Empowerment'}
                                         className="w-full h-64 sm:h-80 lg:h-96 object-cover hover:scale-105 transition-transform duration-300"
                                         onError={(e) => {
+                                            console.error('Partner Empower image failed to load:', e.target.src);
                                             e.target.src = 'https://via.placeholder.com/600x400/6b7280/ffffff?text=Error'
                                         }}
                                     />

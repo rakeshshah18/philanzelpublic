@@ -1,17 +1,31 @@
 "use client";
 import React, { useEffect, useState } from "react";
+import { getImageUrl, handleImageError, logImageDebug } from "@/lib/imageUtils";
+
 const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:8000";
 const WhyChooseUs = () => {
   const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
   useEffect(() => {
     async function fetchData() {
       try {
+        setLoading(true);
         const res = await fetch(`${BASE_URL}/api/why-choose-us`);
         const json = await res.json();
+
         if (json.success && Array.isArray(json.data) && json.data.length > 0) {
           setData(json.data[0]);
+          logImageDebug("WhyChooseUs", json.data[0].image);
+        } else {
+          setError("No data found");
         }
       } catch (e) {
+        console.error("Error fetching why-choose-us data:", e);
+        setError(e.message);
+      } finally {
+        setLoading(false);
       }
     }
     fetchData();
@@ -19,15 +33,19 @@ const WhyChooseUs = () => {
   if (!data) {
     return null;
   }
+
   return (
     <section id="about" className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="relative">
             <img
-              src={data.image?.url || "/pms-img-2.jpg"}
+              src={getImageUrl(data.image, "/pms-img-2.jpg")}
               alt={data.image?.originalName || "Professional financial advisors"}
               className="rounded-lg shadow-xl"
+              onError={(e) => {
+                handleImageError(e, "/pms-img-2.jpg");
+              }}
             />
           </div>
           <div className="flex flex-col justify-center h-full">
