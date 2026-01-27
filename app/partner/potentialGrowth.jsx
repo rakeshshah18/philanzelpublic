@@ -1,6 +1,8 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import { getImageUrl, handleImageError, logImageDebug } from "@/lib/imageUtils"
+
 export default function PotentialGrowthSection() {
     const [growthData, setGrowthData] = useState(null)
     const [isLoading, setIsLoading] = useState(true)
@@ -9,14 +11,15 @@ export default function PotentialGrowthSection() {
         const fetchGrowthData = async () => {
             try {
                 setIsLoading(true)
-                
+
                 const response = await fetch(`${BASE_URL}/api/partner/potential-growth/public`)
-                
+
                 if (response.ok) {
                     const result = await response.json()
-                    
+
                     if (Array.isArray(result) && result.length > 0) {
                         setGrowthData(result[0])
+                        logImageDebug("PotentialGrowthSection", result[0].solutions?.[0]?.icon);
                     } else {
                         setGrowthData(getStaticGrowthData())
                     }
@@ -67,7 +70,7 @@ export default function PotentialGrowthSection() {
             .replace(/\\u003C/g, '<')
             .replace(/\\u003E/g, '>')
             .replace(/&amp;/g, '&')
-        
+
         return <div dangerouslySetInnerHTML={{ __html: cleanHTML }} />
     }
 
@@ -98,8 +101,8 @@ export default function PotentialGrowthSection() {
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {growthData?.solutions?.map((solution, index) => (
-                        <div 
-                            key={solution._id || index} 
+                        <div
+                            key={solution._id || index}
                             className="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-shadow duration-300 hover:border-cyan-300"
                         >
                             {/* Icon */}
@@ -107,11 +110,11 @@ export default function PotentialGrowthSection() {
                                 <div className="w-20 h-20 bg-gray-50 rounded-full flex items-center justify-center hover:scale-110 transition-transform duration-300">
                                     {solution.icon ? (
                                         <img
-                                            src={`${BASE_URL}${solution.icon}`}
+                                            src={getImageUrl(solution.icon)}
                                             alt={solution.heading || 'Solution'}
                                             className="h-12 w-12 object-contain"
                                             onError={(e) => {
-                                                e.target.src = 'https://via.placeholder.com/48x48/6b7280/ffffff?text=?'
+                                                handleImageError(e, 'https://via.placeholder.com/48x48/6b7280/ffffff?text=?');
                                             }}
                                         />
                                     ) : (
