@@ -120,112 +120,113 @@ export default function Navigation({ loggedIn: initialLoggedIn, user: initialUse
   return (
     <nav className="bg-white border-b border-gray-200 sticky top-0 z-50">
       <div className="w-full px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          <div className="flex items-center">
-            <div className="flex-shrink-0">
-              <Link href="/" className="text-2xl font-serif font-black text-cyan-600">
-                Philanzel
+        <div className="flex justify-between items-center h-16 gap-4">
+          {/* Logo - Left */}
+          <div className="flex-shrink-0">
+            <Link href="/" className="text-2xl font-serif font-black text-cyan-600">
+              Philanzel
+            </Link>
+          </div>
+
+          {/* Navigation Items - Center */}
+          <div className="hidden md:block flex-1">
+            <div className="flex items-baseline justify-center space-x-6">
+              <Link href="/" className="text-gray-600 hover:text-cyan-600 px-2 py-2 text-sm font-medium transition-colors">
+                Home
               </Link>
-            </div>
+              <Link href="/about" className="text-gray-600 hover:text-cyan-600 px-2 py-2 text-sm font-medium transition-colors">
+                About Us
+              </Link>
 
-            <div className="hidden md:block ml-10">
-              <div className="flex items-baseline space-x-6">
-                <Link href="/" className="text-gray-600 hover:text-cyan-600 px-2 py-2 text-sm font-medium transition-colors">
-                  Home
-                </Link>
-                <Link href="/about" className="text-gray-600 hover:text-cyan-600 px-2 py-2 text-sm font-medium transition-colors">
-                  About Us
-                </Link>
+              {/* Services Dropdown */}
+              <div
+                className="relative"
+                onMouseEnter={() => setIsServicesDropdownOpen(true)}
+                onMouseLeave={() => setIsServicesDropdownOpen(false)}
+              >
+                <button className="text-gray-600 hover:text-cyan-600 px-2 py-2 text-sm font-medium transition-colors flex items-center space-x-1">
+                  <span>Our Services</span>
+                  <ChevronDown className={`h-4 w-4 transition-transform ${isServicesDropdownOpen ? 'rotate-180' : ''}`} />
+                </button>
 
-                {/* Services Dropdown */}
-                <div
-                  className="relative"
-                  onMouseEnter={() => setIsServicesDropdownOpen(true)}
-                  onMouseLeave={() => setIsServicesDropdownOpen(false)}
-                >
-                  <button className="text-gray-600 hover:text-cyan-600 px-2 py-2 text-sm font-medium transition-colors flex items-center space-x-1">
-                    <span>Our Services</span>
-                    <ChevronDown className={`h-4 w-4 transition-transform ${isServicesDropdownOpen ? 'rotate-180' : ''}`} />
-                  </button>
-
-                  {isServicesDropdownOpen && (
-                    <div className="absolute top-full left-0 w-64 bg-white border border-gray-200 rounded-md shadow-lg py-2 z-50">
-                      {services.map((service) => (
-                        <Link
-                          key={service._id || service.slug}
-                          href={`/services/${service.slug}`}
-                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-cyan-600"
-                        >
-                          {service.tabTitle}
-                        </Link>
-                      ))}
-                      {services.length === 0 && (
-                        <div className="px-4 py-2 text-sm text-gray-500">
-                          Loading services...
-                        </div>
-                      )}
-                    </div>
-                  )}
-                </div>
-
-                {/* Calculators Dropdown */}
-                <div
-                  className="relative"
-                  onMouseEnter={() => setIsCalculatorsDropdownOpen(true)}
-                  onMouseLeave={() => setIsCalculatorsDropdownOpen(false)}
-                >
-                  <button className="text-gray-600 hover:text-cyan-600 px-2 py-2 text-sm font-medium transition-colors flex items-center space-x-1">
-                    <span>Calculators</span>
-                    <ChevronDown className={`h-4 w-4 transition-transform ${isCalculatorsDropdownOpen ? 'rotate-180' : ''}`} />
-                  </button>
-
-                  {isCalculatorsDropdownOpen && (
-                    <div className="absolute top-full left-0 w-64 bg-white border border-gray-200 rounded-md shadow-lg py-2 z-50">
-                      {calculators.map((calculator) => (
-                        <Link
-                          key={calculator._id}
-                          href={`/calculators/${calculator.slug}`}
-                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-cyan-600"
-                        >
-                          {calculator.name}
-                        </Link>
-                      ))}
-                      {calculators.length === 0 && (
-                        <div className="px-4 py-2 text-sm text-gray-500">
-                          No calculators available
-                        </div>
-                      )}
-                    </div>
-                  )}
-                </div>
-
-                <Link href="/events" className="text-gray-600 hover:text-cyan-600 px-2 py-2 text-sm font-medium transition-colors">
-                  Events
-                </Link>
-                <Link href="/careers" className="text-gray-600 hover:text-cyan-600 px-2 py-2 text-sm font-medium transition-colors">
-                  Careers
-                </Link>
-                <Link href="/partner" className="text-gray-600 hover:text-cyan-600 px-2 py-2 text-sm font-medium transition-colors">
-                  Become a Partner
-                </Link>
-                <Link href="/contact" className="text-gray-600 hover:text-cyan-600 px-2 py-2 text-sm font-medium transition-colors">
-                  Contact Us
-                </Link>
-                <Link href="/blog" className="text-gray-600 hover:text-cyan-600 px-2 py-2 text-sm font-medium transition-colors">
-                  Blogs
-                </Link>
+                {isServicesDropdownOpen && (
+                  <div className="absolute top-full left-0 w-64 bg-white border border-gray-200 rounded-md shadow-lg py-2 z-50">
+                    {services.map((service) => (
+                      <Link
+                        key={service._id || service.slug}
+                        href={`/services/${service.slug}`}
+                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-cyan-600"
+                      >
+                        {service.tabTitle}
+                      </Link>
+                    ))}
+                    {services.length === 0 && (
+                      <div className="px-4 py-2 text-sm text-gray-500">
+                        Loading services...
+                      </div>
+                    )}
+                  </div>
+                )}
               </div>
+
+              {/* Calculators Dropdown */}
+              <div
+                className="relative"
+                onMouseEnter={() => setIsCalculatorsDropdownOpen(true)}
+                onMouseLeave={() => setIsCalculatorsDropdownOpen(false)}
+              >
+                <button className="text-gray-600 hover:text-cyan-600 px-2 py-2 text-sm font-medium transition-colors flex items-center space-x-1">
+                  <span>Calculators</span>
+                  <ChevronDown className={`h-4 w-4 transition-transform ${isCalculatorsDropdownOpen ? 'rotate-180' : ''}`} />
+                </button>
+
+                {isCalculatorsDropdownOpen && (
+                  <div className="absolute top-full left-0 w-64 bg-white border border-gray-200 rounded-md shadow-lg py-2 z-50">
+                    {calculators.map((calculator) => (
+                      <Link
+                        key={calculator._id}
+                        href={`/calculators/${calculator.slug}`}
+                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-cyan-600"
+                      >
+                        {calculator.name}
+                      </Link>
+                    ))}
+                    {calculators.length === 0 && (
+                      <div className="px-4 py-2 text-sm text-gray-500">
+                        No calculators available
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+
+              <Link href="/events" className="text-gray-600 hover:text-cyan-600 px-2 py-2 text-sm font-medium transition-colors">
+                Events
+              </Link>
+              <Link href="/careers" className="text-gray-600 hover:text-cyan-600 px-2 py-2 text-sm font-medium transition-colors">
+                Careers
+              </Link>
+              <Link href="/partner" className="text-gray-600 hover:text-cyan-600 px-2 py-2 text-sm font-medium transition-colors">
+                Become a Partner
+              </Link>
+              <Link href="/contact" className="text-gray-600 hover:text-cyan-600 px-2 py-2 text-sm font-medium transition-colors">
+                Contact Us
+              </Link>
+              <Link href="/blog" className="text-gray-600 hover:text-cyan-600 px-2 py-2 text-sm font-medium transition-colors">
+                Blogs
+              </Link>
             </div>
           </div>
 
-          <div className="hidden md:flex items-center space-x-4">
+          {/* Login/Logout - Right */}
+          <div className="hidden md:flex items-center space-x-4 flex-shrink-0">
             {loggedIn && user ? (
               <>
                 <div className="flex items-center space-x-2">
                   <UserIcon className="h-5 w-5 text-gray-600" />
                   <div className="flex flex-col">
                     <span className="text-xs font-medium text-gray-500">Welcome</span>
-                    <span className="text-sm font-medium text-gray-700">{user.name}</span>
+                    <span className="text-sm font-medium text-gray-700">{user.firstName}</span>
                   </div>
                 </div>
                 <Button
